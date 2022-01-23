@@ -6,7 +6,7 @@ class KolektibilitasModel extends Render_Model
     public function getAllData($draw = null, $show = null, $start = null, $cari = null, $order = null)
     {
         // select tabel
-        $this->db->select("a.*, IF(a.status = '0' , 'Tidak Aktif', IF(a.status = '1' , 'Aktif', 'Tidak Diketahui')) as status_str");
+        $this->db->select("a.*, IF(a.status = '0' , 'Tidak Digunakan', IF(a.status = '1' , 'Digunakan', 'Tidak Diketahui')) as status_str");
         $this->db->from("kolektibilitas a");
 
         // order by
@@ -32,7 +32,7 @@ class KolektibilitasModel extends Render_Model
                 a.no_urut LIKE '%$cari%' or
                 a.dari LIKE '%$cari%' or
                 a.sampai LIKE '%$cari%' or
-                IF(a.status = '0' , 'Tidak Aktif', IF(a.status = '1' , 'Aktif', 'Tidak Diketahui')) LIKE '%$cari%' or
+                IF(a.status = '0' , 'Tidak Digunakan', IF(a.status = '1' , 'Digunakan', 'Tidak Diketahui')) LIKE '%$cari%' or
                 a.keterangan LIKE '%$cari%'
             )");
         }

@@ -65,8 +65,8 @@
           <div class="form-group">
             <label for="status">Status</label>
             <select name="status" id="status" class="form-control">
-              <option value="1">Aktif</option>
-              <option value="0">Tidak Aktif</option>
+              <option value="1">Digunakan</option>
+              <option value="0">Tidak Digunakan</option>
             </select>
           </div>
         </form>
