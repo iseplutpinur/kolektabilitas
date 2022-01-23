@@ -1,0 +1,12 @@
+Kebutuhan
+1. Logo
+2. Nama Aplikasi
+3. Copyright
+4. NPM dan Nama
+
+
+Progres
+Crud Jenis Asuransi
+Crud Nasabah
+Crud Kolektibiltas
+Analisis Data
