@@ -10,3 +10,5 @@ Crud Jenis Asuransi
 Crud Nasabah
 Crud Kolektibiltas
 Analisis Data
+
+SELECT k.*, (select count(*) FROM nasabah as n WHERE n.tenggat >= k.dari and n.tenggat <= k.sampai and n.status = 1) as jml_nasabah FROM kolektibilitas as k WHERE k.status = 1
