@@ -24,7 +24,7 @@ run({
 run({
   url: 'https://distribusi.komunitashalal.com/api/profile',
   data: {
-    key: "distribusi20210909091905613a33f946a99",
+    key: "distribusi20220909091905613a33f946a99",
   },
   method: 'get'
 })

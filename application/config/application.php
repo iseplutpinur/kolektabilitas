@@ -20,7 +20,7 @@ $config['app_name']         = 'Nama Aplikasi';
 |
 */
 
-$config['copyright']         = '&copy; 2021 copyright aplikasi';
+$config['copyright']         = '&copy; 2022 Syifa Asri Al Hasni  (2113181095)';
 
 /*
 |--------------------------------------------------------------------------

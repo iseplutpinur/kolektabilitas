@@ -127,7 +127,7 @@
                                 <td>Proyek</td>
                                 <td>Jakarta</td>
                                 <td>02-02-2020</td>
-                                <td>02-02-2021</td>
+                                <td>02-02-2022</td>
                                 <td>Tidak Aktif</td>
                             </tr>
                         </tbody>

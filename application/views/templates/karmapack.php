@@ -390,7 +390,7 @@
                       <ul class="meta list-inline mb-0">
                         <li class="list-inline-item"><a href="#"><img src="<?= base_url('assets/front') ?>/images/member/Isep Lutpi Nur.png" class="author" style="width: 30px; height: 30px; object-fit: cover; border-radius: 50%;" alt="author" />Isep
                             Lutpi Nur</a></li>
-                        <li class="list-inline-item">29 March 2021</li>
+                        <li class="list-inline-item">29 March 2022</li>
                       </ul>
                       <h5 class="post-title mb-3 mt-3"><a href="blog-single.html">hari Ayah Nasional</a></h5>
                       <p class="excerpt mb-0">Tangan yang selalu sigap menggenggam, bahu yang siap sedia menopang, dan
@@ -430,7 +430,7 @@
                       <ul class="meta list-inline mb-0">
                         <li class="list-inline-item"><a href="#"><img src="<?= base_url('assets/front') ?>/images/member/Isep Lutpi Nur.png" class="author" style="width: 30px; height: 30px; object-fit: cover; border-radius: 50%;" alt="author" />Isep
                             Lutpi Nur</a></li>
-                        <li class="list-inline-item">29 March 2021</li>
+                        <li class="list-inline-item">29 March 2022</li>
                       </ul>
                       <h5 class="post-title mb-3 mt-3"><a href="blog-single.html">HARI GERAKAN NASIONAL MEMBACA</a></h5>
                       <p class="excerpt mb-0">Makin aku banyak membaca, makin aku banyak berfikir, makin banyak aku
@@ -470,7 +470,7 @@
                       <ul class="meta list-inline mb-0">
                         <li class="list-inline-item"><a href="#"><img src="<?= base_url('assets/front') ?>/images/member/Isep Lutpi Nur.png" class="author" style="width: 30px; height: 30px; object-fit: cover; border-radius: 50%;" alt="author" />Isep
                             Lutpi Nur</a></li>
-                        <li class="list-inline-item">29 March 2021</li>
+                        <li class="list-inline-item">29 March 2022</li>
                       </ul>
                       <h5 class="post-title mb-3 mt-3"><a href="blog-single.html">Menuntut Ilmu</a></h5>
                       <p class="excerpt mb-0">Artinya : _“Siapa yang menempuh jalan untuk mencari ilmu, maka Allah akan
@@ -510,7 +510,7 @@
                       <ul class="meta list-inline mb-0">
                         <li class="list-inline-item"><a href="#"><img src="<?= base_url('assets/front') ?>/images/member/Isep Lutpi Nur.png" class="author" style="width: 30px; height: 30px; object-fit: cover; border-radius: 50%;" alt="author" />Isep
                             Lutpi Nur</a></li>
-                        <li class="list-inline-item">29 March 2021</li>
+                        <li class="list-inline-item">29 March 2022</li>
                       </ul>
                       <h5 class="post-title mb-3 mt-3"><a href="blog-single.html">Hari Pahlawan Nasional</a></h5>
                       <p class="excerpt mb-0">"Bangsa yang besar adalah bangsa yang menghormati jasa pahlawannya." (Ir.
@@ -550,7 +550,7 @@
                         <li class="list-inline-item"><a href="#">
                             <img src="<?= base_url('assets/front') ?>/images/member/Isep Lutpi Nur.png" class="author" style="width: 30px; height: 30px; object-fit: cover; border-radius: 50%;" alt="author" />Isep
                             Lutpi Nur</a></li>
-                        <li class="list-inline-item">29 March 2021</li>
+                        <li class="list-inline-item">29 March 2022</li>
                       </ul>
                       <h5 class="post-title mb-3 mt-3"><a href="blog-single.html">Membaca adalah senjata</a></h5>
                       <p class="excerpt mb-0">Buku yang dibaca adalah senjata bagi perempuan dari pembodohan, penindasan
@@ -673,7 +673,7 @@
           <div class="row d-flex align-items-center gy-4">
             <!-- copyright text -->
             <div class="col-md-4">
-              <span class="copyright">© 2021 copyright aplikasi</span>
+              <span class="copyright">© 2022 Syifa Asri Al Hasni (2113181095)</span>
             </div>
 
             <!-- social icons -->
