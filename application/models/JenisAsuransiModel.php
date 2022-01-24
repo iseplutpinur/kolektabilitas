@@ -42,9 +42,10 @@ class JenisAsuransiModel extends Render_Model
         return $result;
     }
 
-    public function insert($nama, $keterangan)
+    public function insert($nama, $keterangan, $id = null)
     {
         $data = [
+            'id' => $id,
             'nama' => $nama,
             'keterangan' => $keterangan,
         ];
@@ -71,6 +72,20 @@ class JenisAsuransiModel extends Render_Model
         // Delete users
         $exe = $this->db->where('id', $id)->delete('jenis_asuransi');
         return $exe;
+    }
+
+    public function deleteAll()
+    {
+        // Delete users
+        $exe = $this->db->empty_table('jenis_asuransi');
+        return $exe;
+    }
+
+    public function all()
+    {
+        return $this->db->select("*")
+            ->from('jenis_asuransi')
+            ->get()->result_array();
     }
 
     public function getList()

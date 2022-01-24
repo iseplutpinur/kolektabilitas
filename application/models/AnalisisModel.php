@@ -50,7 +50,7 @@ class AnalisisModel extends Render_Model
 
             $sum_element = "sum($sum_element)/jumlah nasabah";
             $sum_element_num = "($sum_element_num)/$total";
-
+            $sum_div_total = $sum / $total;
             $persentase_hasil = ($sum / $total) * 100;
 
             $output = [
@@ -59,6 +59,7 @@ class AnalisisModel extends Render_Model
                 'persentase' => $persentase_hasil,
                 'sum_element' => $sum_element,
                 'sum_element_num' => $sum_element_num,
+                'sum_div_total' => $sum_div_total,
             ];
             // 1. if(sum(1+2) >= 70% dari total banyak data) then = Dampak bagi perusahaan adalah baik
             if ($persentase_hasil >= 70) {
@@ -66,6 +67,7 @@ class AnalisisModel extends Render_Model
                     "kode" => 1,
                     "message" => "Baik",
                     "text_color" => "success",
+                    "text_color_css" => "#28a745",
                     'sum' => $sum,
                 ], $output);
             }
@@ -75,6 +77,7 @@ class AnalisisModel extends Render_Model
                     "kode" => 2,
                     "message" => "Kurang Baik",
                     "text_color" => "warning",
+                    "text_color_css" => "#ffc107",
                     'sum' => $sum,
                 ], $output);
             }
@@ -84,6 +87,7 @@ class AnalisisModel extends Render_Model
                     "kode" => 4,
                     "message" => "Tidak Baik",
                     "text_color" => "danger",
+                    "text_color_css" => "#dc3545",
                     'sum' => $sum,
                 ], $output);
             }
@@ -92,6 +96,7 @@ class AnalisisModel extends Render_Model
                 "kode" => 4,
                 "message" => "Tidak Diketahui",
                 "text_color" => "dark",
+                "text_color_css" => "#000",
                 'sum' => 0,
                 'jml_nasabah' => 0,
                 'persentase' => 0,

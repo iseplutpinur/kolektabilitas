@@ -2,7 +2,10 @@
   <div class="card-header">
     <div class="d-flex justify-content-between w-100">
       <h3 class="card-title">Analisis Perhitungan Data</h3>
-      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahModal" id="btn-tambah"><i class="fa fa-plus"></i> Tambah</button>
+      <div class="text-right">
+        <a href="<?= base_url() ?>Analisis/export_pdf" class="my-1 btn btn-danger btn-sm"><i class="fas fa-file-pdf"></i> Export PDF</a>
+        <a href="<?= base_url() ?>Analisis/export_excel" class="my-1 btn btn-success btn-sm"><i class="fas fa-file-excel"></i> Export Excel</a>
+      </div>
     </div>
   </div>
   <!-- /.card-header -->

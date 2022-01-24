@@ -47,9 +47,10 @@ class NasabahModel extends Render_Model
         return $result;
     }
 
-    public function insert($nama, $keterangan, $no_rek, $jenis_asuransi_id, $tenggat, $status)
+    public function insert($nama, $keterangan, $no_rek, $jenis_asuransi_id, $tenggat, $status, $id = null)
     {
         $data = [
+            'id' => $id,
             'nama' => $nama,
             'keterangan' => $keterangan,
             'no_rek' => $no_rek,

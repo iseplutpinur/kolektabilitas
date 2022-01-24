@@ -158,7 +158,7 @@ class Nasabah extends Render_Controller
         $tanggal = date("d-m-Y H:i:s");
         $body_head = '<div style="text-align:center">';
         $build_html = '
-                        <h3><span style="text-align:center; ">Daftar Calon Ketua Operasional DKM Ulil Albab</span></h3>' . "
+                        <h3><span style="text-align:center; ">List Jenis Asuransi</span></h3>' . "
         <table>
         $thead_title
         $thead_number
@@ -307,7 +307,6 @@ class Nasabah extends Render_Controller
             $sheet->setCellValue(chr(65 + ++$c) . "$row", $detail->tenggat);
             $sheet->setCellValue(chr(65 + ++$c) . "$row", $detail->keterangan);
             $sheet->setCellValue(chr(65 + ++$c) . "$row", $detail->status);
-            $sheet->setCellValue(chr(65 + ++$c) . "$row", $detail->jenis_asuransi_id);
         }
         // format
         // nomor center
@@ -606,7 +605,7 @@ class Nasabah extends Render_Controller
                 $status = $data[6];
                 $keterangan = $data[5];
 
-                $exe = $this->model->insert($nama, $keterangan, $no_rek, $jenis_asuransi_id, $tenggat, $status);
+                $exe = $this->model->insert($nama, $keterangan, $no_rek, $jenis_asuransi_id, $tenggat, $status, $start);
                 if (!$exe) {
                     $result = false;
                 }

@@ -104,6 +104,34 @@ $(function () {
     })
   });
 
+  $("#fimport").submit(function (ev) {
+    ev.preventDefault();
+    const form = new FormData(this);
+    $.LoadingOverlay("show");
+    $.ajax({
+      method: 'post',
+      url: '<?= base_url() ?>Nasabah/import_excel',
+      data: form,
+      cache: false,
+      contentType: false,
+      processData: false,
+    }).done((data) => {
+      Toast.fire({
+        icon: 'success',
+        title: 'Data berhasil disimpan'
+      })
+      dynamic();
+    }).fail(($xhr) => {
+      Toast.fire({
+        icon: 'error',
+        title: 'Data gagal disimpan'
+      })
+    }).always(() => {
+      $.LoadingOverlay("hide");
+      $('#inportExcel').modal('toggle')
+    })
+  });
+
   // hapus
   $('#OkCheck').click(() => {
     let id = $("#idCheck").val()

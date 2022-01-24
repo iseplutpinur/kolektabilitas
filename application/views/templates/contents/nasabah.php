@@ -2,11 +2,11 @@
   <div class="card-header">
     <div class="d-flex justify-content-between w-100">
       <h3 class="card-title">List Nasabah</h3>
-      <div>
-        <a href="<?= base_url() ?>Nasabah/export_pdf" class="btn btn-danger btn-sm"><i class="fas fa-file-pdf"></i> Export PDF</a>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#inportExcel" id="btn-import"><i class="fas fa-file-upload"></i></i> Import Excel</button>
-        <a href="<?= base_url() ?>Nasabah/export_excel" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i> Export Excel</a>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahModal" id="btn-tambah"><i class="fa fa-plus"></i> Tambah</button>
+      <div class="text-right">
+        <a href="<?= base_url() ?>Nasabah/export_pdf" class="my-1 btn btn-danger btn-sm"><i class="fas fa-file-pdf"></i> Export PDF</a>
+        <button class="my-1 btn btn-info btn-sm" data-toggle="modal" data-target="#inportExcel" id="btn-import"><i class="fas fa-file-upload"></i></i> Import Excel</button>
+        <a href="<?= base_url() ?>Nasabah/export_excel" class="my-1 btn btn-success btn-sm"><i class="fas fa-file-excel"></i> Export Excel</a>
+        <button type="button" class="my-1 btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahModal" id="btn-tambah"><i class="fa fa-plus"></i> Tambah</button>
       </div>
     </div>
   </div>
@@ -100,12 +100,12 @@
       <div class="modal-body">
         <form action="" id="fimport" method="post">
           <div class="form-group">
-            <label for="file">Nama Nasabah <a href="<?= base_url() ?>Nasabah/form_import_excel" class="text-link">Format Import Excel</a></label>
+            <label for="file">File Nasabah <a href="<?= base_url() ?>Nasabah/form_import_excel" class="text-link">Format Import Excel</a></label>
             <input type="file" class="form-control" id="file" name="file" required />
           </div>
         </form>
         <strong class="text-danger">Peringatan</strong>
-        <p>Dengan mengimport data dari excel maka data sebelumnya di database akan diganti dengan data yang di import.</p>
+        <p>Dengan mengimport data dari excel maka data sebelumnya di database akan diganti dengan data yang di import. untuk keamanan silahkan eksprot terlebih dahulu.</p>
 
         <strong class="text-success">Perhatian</strong>
         <p>Format file import excel sama dengan file export excel <a href="<?= base_url() ?>Nasabah/export_excel" class="text-link">disini</a></p>

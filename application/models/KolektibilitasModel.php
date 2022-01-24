@@ -45,10 +45,11 @@ class KolektibilitasModel extends Render_Model
         return $result;
     }
 
-    public function insert($nama, $keterangan,  $dari, $sampai, $status)
+    public function insert($nama, $keterangan,  $dari, $sampai, $status, $id = null)
     {
         $data = [
             'nama' => $nama,
+            'id' => $id,
             'keterangan' => $keterangan,
             'dari' => $dari,
             'sampai' => $sampai,
@@ -58,6 +59,13 @@ class KolektibilitasModel extends Render_Model
         $execute = $this->db->insert('kolektibilitas', $data);
         $execute = $this->db->insert_id();
         return $execute;
+    }
+
+    public function deleteAll()
+    {
+        // Delete users
+        $exe = $this->db->empty_table('kolektibilitas');
+        return $exe;
     }
 
     public function update($id, $nama, $keterangan,  $dari, $sampai, $status)
@@ -80,6 +88,14 @@ class KolektibilitasModel extends Render_Model
         // Delete users
         $exe = $this->db->where('id', $id)->delete('kolektibilitas');
         return $exe;
+    }
+
+    public function all()
+    {
+        return $this->db->select("*, , IF(status = '0' , 'Tidak Digunakan', IF(status = '1' , 'Digunakan', 'Tidak Diketahui')) as status_str")
+            ->from('kolektibilitas')
+            ->order_by('dari')
+            ->get()->result_array();
     }
 
     public function getList()
