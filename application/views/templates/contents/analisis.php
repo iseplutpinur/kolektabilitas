@@ -1,26 +1,47 @@
 <div class="card card-primary card-outline">
   <div class="card-header">
     <div class="d-flex justify-content-between w-100">
-      <h3 class="card-title">List Kolektibilitas</h3>
+      <h3 class="card-title">Analisis Perhitungan Data</h3>
       <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahModal" id="btn-tambah"><i class="fa fa-plus"></i> Tambah</button>
     </div>
   </div>
   <!-- /.card-header -->
   <div class="card-body">
-    <table id="dt_basic" class="table table-bordered table-striped table-hover">
+    <label for="dt_kolektibilitas">Tabel Kolektibilitas</label>
+    <table id="dt_kolektibilitas" class="table table-bordered table-striped table-hover">
       <thead>
         <tr>
           <th style="max-width: 50px;">No</th>
-          <th>ID</th>
           <th>Nama</th>
-          <th>Dari</th>
-          <th>Sampai</th>
-          <th>Keterangan</th>
+          <th>Jml. Nasabah</th>
           <th>status</th>
-          <th>Aksi</th>
         </tr>
       </thead>
+      <tbody>
+        <?php $number = 0;
+        foreach ($kolektibilitas as $ko) : ?>
+          <tr <?= $ko['status'] == '1' ? 'class="bg-success"' : '' ?>>
+            <td><?= ++$number ?></td>
+            <td><?= $ko['nama'] . ' (' . $ko['dari'] . '-' . $ko['sampai'] . ' Hari)' ?></td>
+            <td><?= $ko['jml_nasabah'] ?></td>
+            <td><?= $ko['status_str'] ?></td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
     </table>
+    <hr>
+    <p><strong>Jumlah Semua Nasabah:</strong> <?= $jml_nasabah ?> Nasabah</p>
+    <p><strong>Rumus:</strong> <?= $analisis_data['sum_element'] ?></p>
+    <p><strong>Perhitungan:</strong> <?= $analisis_data['sum_element_num'] ?></p>
+    <p>: <?= $analisis_data['sum'] . '/' . $analisis_data['jml_nasabah'] ?></p>
+    <p>: <?= ((int)$analisis_data['sum'] / (int)$analisis_data['jml_nasabah']) ?></p>
+    <p>: <?= ((int)$analisis_data['sum'] / (int)$analisis_data['jml_nasabah']) . ' * 100 = ' . (int)$analisis_data['persentase'] . '%' ?></p>
+
+    <p><strong>Rules:</strong> (hasil >= 70%) = <strong class="text-success">Baik</strong></p>
+    <p><strong>:</strong> (hasil >= 60% and hasil < 60%)=<strong class="text-warning">Kurang Baik</strong></p>
+    <p><strong>:</strong> (else)=<strong class="text-danger">Tidak Baik</strong></p>
+
+    <p><strong>Kesimpulan:</strong> Dampak bagi perusahaan adalah <strong class="text-<?= $analisis_data['text_color'] ?>"><?= $analisis_data['message'] ?></strong></p>
   </div>
   <!-- /.card-body -->
 </div>
@@ -39,6 +60,10 @@
           <div class="form-group">
             <label for="nama">Nama Kolektibilitas</label>
             <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Kolektibilitas" required />
+          </div>
+          <div class="form-group">
+            <label for="no_urut">Nomor Urut</label>
+            <input type="number" class="form-control" id="no_urut" name="no_urut" placeholder="Nomor Urut" required />
           </div>
           <div class="row">
             <div class="col-lg-6">

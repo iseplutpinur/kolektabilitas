@@ -11,6 +11,7 @@
       <thead>
         <tr>
           <th style="max-width: 50px;">No</th>
+          <th>ID</th>
           <th>Nama</th>
           <th>Keterangan</th>
           <th>Aksi</th>

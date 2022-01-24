@@ -56,11 +56,10 @@ class Kolektibilitas extends Render_Controller
         $this->db->trans_start();
         $nama = $this->input->post("nama");
         $keterangan = $this->input->post("keterangan");
-        $no_urut = $this->input->post("no_urut");
         $dari = $this->input->post("dari");
         $sampai = $this->input->post("sampai");
         $status = $this->input->post("status");
-        $result = $this->model->insert($nama, $keterangan, $no_urut, $dari, $sampai, $status);
+        $result = $this->model->insert($nama, $keterangan, $dari, $sampai, $status);
         $this->db->trans_complete();
         $code = $result ? 200 : 500;
         $this->output_json(["data" => $result], $code);
@@ -71,11 +70,10 @@ class Kolektibilitas extends Render_Controller
         $id = $this->input->post("id");
         $nama = $this->input->post("nama");
         $keterangan = $this->input->post("keterangan");
-        $no_urut = $this->input->post("no_urut");
         $dari = $this->input->post("dari");
         $sampai = $this->input->post("sampai");
         $status = $this->input->post("status");
-        $result = $this->model->update($id, $nama, $keterangan, $no_urut, $dari, $sampai, $status);
+        $result = $this->model->update($id, $nama, $keterangan, $dari, $sampai, $status);
         $code = $result ? 200 : 500;
         $this->output_json(["data" => $result], $code);
     }

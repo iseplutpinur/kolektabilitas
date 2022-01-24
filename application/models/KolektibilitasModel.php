@@ -29,7 +29,6 @@ class KolektibilitasModel extends Render_Model
         if ($cari != null) {
             $this->db->where("(
                 a.nama LIKE '%$cari%' or
-                a.no_urut LIKE '%$cari%' or
                 a.dari LIKE '%$cari%' or
                 a.sampai LIKE '%$cari%' or
                 IF(a.status = '0' , 'Tidak Digunakan', IF(a.status = '1' , 'Digunakan', 'Tidak Diketahui')) LIKE '%$cari%' or
@@ -46,12 +45,11 @@ class KolektibilitasModel extends Render_Model
         return $result;
     }
 
-    public function insert($nama, $keterangan, $no_urut, $dari, $sampai, $status)
+    public function insert($nama, $keterangan,  $dari, $sampai, $status)
     {
         $data = [
             'nama' => $nama,
             'keterangan' => $keterangan,
-            'no_urut' => $no_urut,
             'dari' => $dari,
             'sampai' => $sampai,
             'status' => $status,
@@ -62,12 +60,11 @@ class KolektibilitasModel extends Render_Model
         return $execute;
     }
 
-    public function update($id, $nama, $keterangan, $no_urut, $dari, $sampai, $status)
+    public function update($id, $nama, $keterangan,  $dari, $sampai, $status)
     {
         $data = [
             'nama' => $nama,
             'keterangan' => $keterangan,
-            'no_urut' => $no_urut,
             'dari' => $dari,
             'sampai' => $sampai,
             'status' => $status,

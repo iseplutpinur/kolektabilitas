@@ -1,4 +1,5 @@
 $(function () {
+  const nowrap = ($(window).width() > 500) ? 'text-nowrap' : '';
   function dynamic() {
     const table_html = $('#dt_basic');
     table_html.dataTable().fnDestroy()
@@ -12,11 +13,11 @@ $(function () {
       "serverSide": true,
       "responsive": true,
       "lengthChange": true,
-      "autoWidth": false,
+      "autoWidth": true,
       "columns": [
         { "data": null },
-        { "data": "nama" },
-        { "data": "no_urut" },
+        { "data": "id" },
+        { "data": "nama", className: nowrap },
         {
           "data": "dari", render(data, type, full, meta) {
             return data + ' Hari';
@@ -48,7 +49,7 @@ $(function () {
                   <i class="fa fa-trash"></i> Hapus
                 </button>
               </div>`
-          }, className: "nowrap"
+          }, className: nowrap
         }
       ],
       order: [
@@ -56,7 +57,7 @@ $(function () {
       ],
       columnDefs: [{
         orderable: false,
-        targets: [0, 7]
+        targets: [0, 6]
       }],
     });
     new_table.on('draw.dt', function () {

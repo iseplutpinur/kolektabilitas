@@ -1,10 +1,20 @@
 $(function () {
+  const dt_kolektibilitas = $("#dt_kolektibilitas").DataTable({
+    "processing": true,
+    "serverSide": false,
+    "responsive": true,
+    "lengthChange": true,
+    "autoWidth": true,
+  });
+
+
+  const nowrap = ($(window).width() > 500) ? 'text-nowrap' : '';
   function dynamic() {
     const table_html = $('#dt_basic');
     table_html.dataTable().fnDestroy()
     const new_table = table_html.DataTable({
       "ajax": {
-        "url": "<?= base_url()?>JenisAsuransi/ajax_data/",
+        "url": "<?= base_url()?>Kolektibilitas/ajax_data/",
         "data": null,
         "type": 'POST'
       },
@@ -12,18 +22,32 @@ $(function () {
       "serverSide": true,
       "responsive": true,
       "lengthChange": true,
-      "autoWidth": false,
+      "autoWidth": true,
       "columns": [
         { "data": null },
-        { "data": "id" },
-        { "data": "nama" },
+        { "data": "nama", className: nowrap },
+        {
+          "data": "dari", render(data, type, full, meta) {
+            return data + ' Hari';
+          }
+        },
+        {
+          "data": "sampai", render(data, type, full, meta) {
+            return data + ' Hari';
+          }
+        },
         { "data": "keterangan" },
+        { "data": "status_str" },
         {
           "data": "id", render(data, type, full, meta) {
             return `<div class="pull-right">
                 <button class="btn btn-primary btn-xs"
                                       data-id="${data}"
                                       data-nama="${full.nama}"
+                                      data-no_urut="${full.no_urut}"
+                                      data-dari="${full.dari}"
+                                      data-sampai="${full.sampai}"
+                                      data-status="${full.status}"
                                       data-keterangan="${full.keterangan}"
                                       data-toggle="modal" data-target="#tambahModal"
                                   onclick="Ubah(this)">
@@ -33,15 +57,15 @@ $(function () {
                   <i class="fa fa-trash"></i> Hapus
                 </button>
               </div>`
-          }, className: "nowrap"
+          }, className: nowrap
         }
       ],
       order: [
-        [1, 'asc']
+        [2, 'asc']
       ],
       columnDefs: [{
         orderable: false,
-        targets: [0, 3]
+        targets: [0, 6]
       }],
     });
     new_table.on('draw.dt', function () {
@@ -53,12 +77,16 @@ $(function () {
       });
     });
   }
-  dynamic();
+  // dynamic();
 
   $("#btn-tambah").click(() => {
-    $("#tambahModalTitle").text("Tambah Jenis Asuransi");
+    $("#tambahModalTitle").text("Tambah Jenis Koletibilitas");
     $('#id').val('');
     $('#nama').val('');
+    $('#no_urut').val('');
+    $('#dari').val('');
+    $('#sampai').val('');
+    $('#status').val('1');
     $('#keterangan').val('');
   });
 
@@ -68,7 +96,7 @@ $(function () {
     $.LoadingOverlay("show");
     $.ajax({
       method: 'post',
-      url: '<?= base_url() ?>JenisAsuransi/' + ($("#id").val() == "" ? 'insert' : 'update'),
+      url: '<?= base_url() ?>Kolektibilitas/' + ($("#id").val() == "" ? 'insert' : 'update'),
       data: form,
       cache: false,
       contentType: false,
@@ -96,7 +124,7 @@ $(function () {
     $.LoadingOverlay("show");
     $.ajax({
       method: 'post',
-      url: '<?= base_url() ?>JenisAsuransi/delete',
+      url: '<?= base_url() ?>Kolektibilitas/delete',
       data: {
         id: id
       }
@@ -135,6 +163,10 @@ const Ubah = (datas) => {
   const data = datas.dataset;
   $('#id').val(data.id);
   $('#nama').val(data.nama);
+  $('#no_urut').val(data.no_urut);
+  $('#dari').val(data.dari);
+  $('#sampai').val(data.sampai);
+  $('#status').val(data.status);
   $('#keterangan').val(data.keterangan);
-  $("#tambahModalTitle").text("Ubah Jenis Asuransi");
+  $("#tambahModalTitle").text("Ubah Jenis Koletibilitas");
 }
