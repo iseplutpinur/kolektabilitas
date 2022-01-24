@@ -94,6 +94,15 @@ class NasabahModel extends Render_Model
             ->get()->result_array();
     }
 
+    public function all()
+    {
+        return $this->db->select('n.*, ja.nama as asuransi')
+            ->from('nasabah n')
+            ->order_by('n.tenggat')
+            ->join('jenis_asuransi ja', 'n.jenis_asuransi_id = ja.id', 'left')
+            ->get()->result_array();
+    }
+
     public function getJenisAsuransi()
     {
         return $this->db->select('id, nama as text')

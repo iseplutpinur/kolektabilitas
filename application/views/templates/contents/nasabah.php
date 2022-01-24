@@ -2,7 +2,12 @@
   <div class="card-header">
     <div class="d-flex justify-content-between w-100">
       <h3 class="card-title">List Nasabah</h3>
-      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahModal" id="btn-tambah"><i class="fa fa-plus"></i> Tambah</button>
+      <div>
+        <a href="<?= base_url() ?>Nasabah/export_pdf" class="btn btn-danger btn-sm"><i class="fas fa-file-pdf"></i> Export PDF</a>
+        <a href="<?= base_url() ?>Nasabah/export_excel" class="btn btn-info btn-sm"><i class="fas fa-file-upload"></i></i> Import Excel</a>
+        <a href="<?= base_url() ?>Nasabah/export_excel" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i> Export Excel</a>
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahModal" id="btn-tambah"><i class="fa fa-plus"></i> Tambah</button>
+      </div>
     </div>
   </div>
   <!-- /.card-header -->
