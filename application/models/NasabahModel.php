@@ -86,6 +86,13 @@ class NasabahModel extends Render_Model
         return $exe;
     }
 
+    public function deleteAll()
+    {
+        // Delete users
+        $exe = $this->db->empty_table('nasabah');
+        return $exe;
+    }
+
     public function getList()
     {
         return $this->db->select('id, nama as text')

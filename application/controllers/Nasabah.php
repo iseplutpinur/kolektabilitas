@@ -307,6 +307,7 @@ class Nasabah extends Render_Controller
             $sheet->setCellValue(chr(65 + ++$c) . "$row", $detail->tenggat);
             $sheet->setCellValue(chr(65 + ++$c) . "$row", $detail->keterangan);
             $sheet->setCellValue(chr(65 + ++$c) . "$row", $detail->status);
+            $sheet->setCellValue(chr(65 + ++$c) . "$row", $detail->jenis_asuransi_id);
         }
         // format
         // nomor center
@@ -392,6 +393,260 @@ class Nasabah extends Render_Controller
         header('Content-Disposition: attachment;filename="' . $title_excel . '.xlsx"');
         header('Cache-Control: max-age=0');
         $writer->save('php://output');
+    }
+
+    public function form_import_excel()
+    {
+        $bulan_array = [
+            1 => 'Januari',
+            2 => 'February',
+            3 => 'Maret',
+            4 => 'April',
+            5 => 'Mei',
+            6 => 'Juni',
+            7 => 'Juli',
+            8 => 'Agustus',
+            9 => 'September',
+            10 => 'Oktober',
+            11 => 'November',
+            12 => 'Desember',
+        ];
+        $today_m = (int)Date("m");
+        $today_d = (int)Date("d");
+        $today_y = (int)Date("Y");
+
+        $date = $today_d . " " . $bulan_array[$today_m] . " " . $today_y;
+
+        // laporan baru
+        $row = 1;
+        $col_start = "A";
+        $col_end = "G";
+        $title_excel = "Form Import Data Nasabah";
+        // Header excel ================================================================================================
+        $spreadsheet = new PhpOffice\PhpSpreadsheet\Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        // Dokumen Properti
+        $spreadsheet->getProperties()
+            ->setCreator("Administrator")
+            ->setLastModifiedBy("Administrator")
+            ->setTitle($title_excel)
+            ->setSubject("Administrator")
+            ->setDescription("LIst Company $date")
+            ->setKeywords("Laporan, Report")
+            ->setCategory("Laporan, Report");
+        // set default font
+        $spreadsheet->getDefaultStyle()->getFont()->setName('Calibri');
+        $spreadsheet->getDefaultStyle()->getFont()->setSize(11);
+
+
+        // header 2 ====================================================================================================
+        $row += 1;
+        $sheet->mergeCells($col_start . $row . ":" . $col_end . $row)
+            ->setCellValue("A$row", "Form Import Data Nasabah");
+        $sheet->getStyle($col_start . $row . ":" . $col_end . $row)->applyFromArray([
+            "font" => [
+                "bold" => true,
+                "size" => 13
+            ],
+            "alignment" => [
+                "horizontal" => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+            ],
+        ]);
+
+        // Tabel =======================================================================================================
+        // Tabel Header
+        $row += 2;
+        $styleArray = [
+            'font' => [
+                'bold' => true,
+            ],
+            'alignment' => [
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+            ],
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                ],
+            ],
+            'fill' => [
+                'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                'startColor' => [
+                    'rgb' => '93C5FD',
+                ]
+            ],
+        ];
+        $sheet->getStyle($col_start . $row . ":" . $col_end . $row)->applyFromArray($styleArray);
+        $row++;
+        $styleArray['fill']['startColor']['rgb'] = 'E5E7EB';
+        $sheet->getStyle($col_start . $row . ":" . $col_end . $row)->applyFromArray($styleArray);
+
+        // poin-poin header disini
+        $headers = [
+            'No',
+            'No Rek',
+            'Nama',
+            'Asuransi',
+            'Tenggat',
+            'Keterangan',
+            'Status',
+        ];
+
+        // apply header
+        for ($i = 0; $i < count($headers); $i++) {
+            $sheet->setCellValue(chr(65 + $i) . ($row - 1), $headers[$i]);
+            $sheet->setCellValue(chr(65 + $i) . $row, ($i + 1));
+        }
+
+        // tabel body
+        $styleArray = [
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => ['argb' => '000000'],
+                ],
+            ],
+            "alignment" => [
+                'wrapText' => TRUE,
+                'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_TOP
+            ]
+        ];
+        $start_tabel = $row + 1;
+
+        // format
+        // nomor center
+        $sheet->getStyle($col_start . $start_tabel . ":" . $col_start . $row)
+            ->getAlignment()
+            ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+        // border all data
+        $sheet->getStyle($col_start . $start_tabel . ":" . $col_end . $row)
+            ->applyFromArray($styleArray);
+
+        $spreadsheet->getActiveSheet()->getStyle('B' . $start_tabel . ":B" . $row)->getNumberFormat()
+            ->setFormatCode('0');
+
+
+        // set width column
+        $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
+
+        // set  printing area
+        $spreadsheet->getActiveSheet()->getPageSetup()->setPrintArea($col_start . '1:' . $col_end . $row);
+        $spreadsheet->getActiveSheet()->getPageSetup()
+            ->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_PORTRAIT);
+        $spreadsheet->getActiveSheet()->getPageSetup()
+            ->setPaperSize(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_A4);
+
+        // margin
+        $spreadsheet->getActiveSheet()->getPageMargins()->setTop(1);
+        $spreadsheet->getActiveSheet()->getPageMargins()->setRight(0);
+        $spreadsheet->getActiveSheet()->getPageMargins()->setLeft(0);
+        $spreadsheet->getActiveSheet()->getPageMargins()->setBottom(0);
+
+        // page center on
+        $spreadsheet->getActiveSheet()->getPageSetup()->setHorizontalCentered(true);
+        $spreadsheet->getActiveSheet()->getPageSetup()->setVerticalCentered(false);
+        $writer = new PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+        // die;
+
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="' . $title_excel . '.xlsx"');
+        header('Cache-Control: max-age=0');
+        $writer->save('php://output');
+    }
+
+    public function import_excel()
+    {
+        $fileName = $_FILES['file']['name'];
+
+        $config['upload_path'] = './assets/'; //path upload
+        $config['file_name'] = $fileName;  // nama file
+        $config['allowed_types'] = 'xls|xlsx'; //tipe file yang diperbolehkan
+        $config['max_size'] = 100000; // maksimal sizze
+
+        $this->load->library('upload'); //meload librari upload
+        $this->upload->initialize($config);
+
+        $file_location = "";
+
+        if (!$this->upload->do_upload('file')) {
+            echo json_encode(['code' => 1, 'message' => $this->upload->display_errors()]);
+
+            exit();
+        } else {
+            $file_location = array('upload_data' => $this->upload->data());
+            $file_location = $file_location['upload_data']['full_path'];
+        }
+
+
+        /** Load $inputFileName to a Spreadsheet Object  **/
+        $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($file_location);
+        $array_from_excel = $spreadsheet->getActiveSheet()->toArray();
+        // simpan
+        $result = true;
+        $start = 1;
+        $jenis_asuransi = $this->model->getJenisAsuransi();
+
+        $this->db->trans_start();
+        // hapus semua data nasabah
+        $this->model->deleteAll();
+
+        // insert yang baru dari excel
+        foreach ($array_from_excel as $data) {
+            if ($start > 5) {
+                $nama = $data[2];
+                $no_rek = $data[1];
+                $jenis_asuransi_id = $this->getJenisAsuransi($jenis_asuransi, $data[3]);
+                $tenggat = $data[4];
+                $status = $data[6];
+                $keterangan = $data[5];
+
+                $exe = $this->model->insert($nama, $keterangan, $no_rek, $jenis_asuransi_id, $tenggat, $status);
+                if (!$exe) {
+                    $result = false;
+                }
+            }
+            $start++;
+        }
+
+        $this->db->trans_complete();
+
+        // hapus file setelah dibaca
+        unlink($file_location);
+        $this->output_json(
+            [
+                'code' => $result ? 0 : 1,
+                'message' => "File rusak atau tidak lengkap."
+            ]
+        );
+    }
+
+    private function getJenisAsuransi($lists, $data): ?int
+    {
+        $finish = false;
+        $result = null;
+        $list_id = [];
+
+        foreach ($lists as $list) {
+            $list_id[] = $list['id'];
+            if ($list['text'] == $data) {
+                $result = $list['id'];
+                $finish = true;
+            }
+        }
+
+        if (!$finish) {
+            if (in_array($data, $list_id)) {
+                $finish = true;
+                $result = $data;
+            }
+        }
+        return $result;
     }
 
     function __construct()
