@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login | Nama Aplikasi</title>
+  <title>Login | Klasifikasi Kolektibilitas Nasabah BRI</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -41,7 +41,7 @@
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
-        <span class="h5"><b>Nama Aplikasi</b><br>Login Sebagai Administrator</span>
+        <span class="h6"><b>Klasifikasi Kolektibilitas Nasabah BRI</b><br>Login Sebagai Administrator</span>
       </div>
 
       <div class="card-body pt-3">

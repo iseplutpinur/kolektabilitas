@@ -9,7 +9,7 @@
 |
 */
 
-$config['app_name']         = 'Nama Aplikasi';
+$config['app_name']         = 'KKN BRI';
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +20,7 @@ $config['app_name']         = 'Nama Aplikasi';
 |
 */
 
-$config['copyright']         = '&copy; 2022 Syifa Asri Al Hasni  (2113181095)';
+$config['copyright']         = '&copy; 2022 Klasifikasi Kolektibilitas Nasabah BRI | Syifa Asri Al Hasni  (2113181095)';
 
 /*
 |--------------------------------------------------------------------------
